@@ -8,3 +8,5 @@ Route::get('/products/search', [ProductController::class, 'search'])->name('prod
 Route::get('/products/register', [ProductController::class, 'create'])->name('products.create');
 Route::post('/products/store', [ProductController::class, 'store'])->name('products.store');
 Route::get('/products/{productId}', [ProductController::class, 'show'])->name('products.show');
+Route::post('/products/{productId}/update', [ProductController::class, 'update'])->name('products.update');
+Route::post('/products/{productId}/delete', [ProductController::class, 'destroy'])->name('products.destroy');

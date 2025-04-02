@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-<div class="frame387">
+<div class="frame-base">
     <div class="frame386">
         <h2>商品一覧</h2>
         <a href="{{ route('products.create') }}" class="add-button">＋商品を追加</a>
@@ -14,23 +14,26 @@
     <div class="product-page">
         <div class="product-sidebar">
             <div class="search-section">
-                <form class="search-form" action="{{ route('products.search') }}" method="GET">
-                    <input class="search-input" type="text" name="keyword" placeholder="商品名で検索" value="{{ request('keyword') }}">
-                    <button class="search-button" type="submit">検索</button>
-                </form>
+            <form class="search-form" action="{{ route('products.search') }}" method="GET">
+                <input class="search-input" type="text" name="keyword" placeholder="商品名で検索" value="{{ request('keyword') }}">
+                @if(request('sort'))
+                    <input type="hidden" name="sort" value="{{ request('sort') }}">
+                @endif
+                <button class="search-button" type="submit">検索</button>
+            </form>
             </div>
             <div class="sort-section">
-                <form method="GET" action="{{ route('products.search') }}" class="sort-form">
-                    <label for="sort">価格順で表示</label>
-                    <select class="sort-select" name="sort" onchange="this.form.submit()">
-                        <option value="" disabled {{ request('sort') === null ? 'selected' : '' }}>価格で並び替え</option>
-                        <option value="desc" {{ request('sort') === 'desc' ? 'selected' : '' }}>高い順に表示</option>
-                        <option value="asc" {{ request('sort') === 'asc' ? 'selected' : '' }}>低い順に表示</option>
-                    </select>
-                    @if(request('keyword'))
-                        <input type="hidden" name="keyword" value="{{ request('keyword') }}">
-                    @endif
-                </form>
+            <form method="GET" action="{{ route('products.search') }}" class="sort-form">
+                <label for="sort">価格順で表示</label>
+                <select class="sort-select" name="sort" onchange="this.form.submit()">
+                    <option value="" disabled {{ request('sort') === null ? 'selected' : '' }}>並び替えを選択</option>
+                    <option value="desc" {{ request('sort') === 'desc' ? 'selected' : '' }}>価格が高い順</option>
+                    <option value="asc" {{ request('sort') === 'asc' ? 'selected' : '' }}>価格が安い順</option>
+                </select>
+                @if(request('keyword'))
+                    <input type="hidden" name="keyword" value="{{ request('keyword') }}">
+                @endif
+            </form>
                 @if(request('sort'))
                     <div class="filter-tag-wrapper">
                         <div class="filter-tag">
@@ -44,7 +47,8 @@
         </div>
         <div class="product-content">
             <div class="product-list">
-                @foreach ($products as $product)
+            @foreach ($products as $product)
+                <a href="{{ route('products.show', ['productId' => $product->id]) }}" class="product-card-link">
                     <div class="product-card">
                         <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="product-image">
                         <div class="product-info">
@@ -52,7 +56,8 @@
                             <div class="product-price">¥{{ number_format($product->price) }}</div>
                         </div>
                     </div>
-                @endforeach
+                </a>
+            @endforeach
             </div>
             <div class="pagination">
             {{ $products->appends(request()->all())->onEachSide(1)->links('vendor.pagination.custom') }}

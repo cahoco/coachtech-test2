@@ -1,20 +1,18 @@
-/* 387 */
-.product-create-page {
-    width: 1512px;
-    height: 930px;
-    padding-top: 70px;
-    padding-right: 376px;
-    padding-bottom: 70px;
-    padding-left: 376px;
-    gap: 40px;
-    background: #F8F8F8;
+.page-title {
+    text-align: left;         /* ← 中央寄せしない */
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    width: 760px;             /* ← フォームと同じ幅 */
+    margin-left: auto;        /* ← 中央寄せ時の補助 */
+    margin-right: auto;       /* ← 中央寄せ時の補助 */
 }
 
-/* 397 */
 .product-form {
     width: 760px;
     height: 702px;
     gap: 30px;
+    margin: 0 auto;
 }
 
 /* 392 */
@@ -66,10 +64,6 @@
     border-width: 1px;
     background: #FFFFFF;
     border: 1px solid #E0DFDE
-}
-
-::placeholder {
-    color: #E0DFDE;
 }
 
 .custom-file-upload input[type="file"] {
@@ -153,43 +147,4 @@
     color: red;
     font-size: 0.75rem;
     margin-left: 0.5rem;
-}
-
-.form-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-top: 32px;
-}
-
-.btn-cancel {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    width: 200px;
-    height: 50px;
-    background-color: #E0DFDE;
-    color: #000000;
-    font-weight: 500;
-    text-decoration: none;
-    border: none;
-    border-radius: 5px;
-    box-shadow: 0px 4px 10px 0px #0000001A;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-.btn-register {
-    width: 200px;
-    height: 50px;
-    padding-top: 13px;
-    padding-right: 10px;
-    padding-bottom: 13px;
-    padding-left: 10px;
-    gap: 10px;
-    border-radius: 5px;
-    border: none;
-    background: #F5C800;
-    box-shadow: 0px 4px 10px 0px #0000001A;
-    font-size: 16px;
 }

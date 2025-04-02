@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-<div class="product-create-page">
+<div class="frame-base">
     <h2 class="page-title">商品登録</h2>
     <div class="product-form">
         <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
