@@ -107,3 +107,68 @@
 ::placeholder {
     color: #E0DFDE;
 }
+
+
+
+.season-options {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+}
+
+.season-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    user-select: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+}
+
+.season-label input[type="checkbox"] {
+    display: none;
+}
+
+.custom-check {
+    width: 16px;
+    height: 16px;
+    border: 1px solid #4B4B4B;
+    border-radius: 50%;
+    position: relative;
+    background: white;
+    flex-shrink: 0;
+}
+
+.custom-check::before {
+    content: "✓";
+    font-size: 16px;
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -52%);
+    opacity: 0;
+    transition: 0.2s;
+}
+
+input[type="checkbox"]:checked + .custom-check {
+    background-color: #4B4B4B;
+    border-color: #4B4B4B;
+}
+
+input[type="checkbox"]:checked + .custom-check::before {
+    opacity: 1;
+}
+
+.season-name {
+    font-size: 16px;
+    color: #4B4B4B;
+    transition: color 0.2s;
+}
+
+input[type="checkbox"]:checked + .custom-check + .season-name {
+    color: #4B4B4B;
+}

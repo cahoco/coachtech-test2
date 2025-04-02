@@ -48,7 +48,8 @@
                     <label class="season-label">
                         <input type="checkbox" name="seasons[]" value="{{ $season->id }}"
                             {{ is_array(old('seasons')) && in_array($season->id, old('seasons')) ? 'checked' : '' }}>
-                        {{ $season->name }}
+                        <span class="custom-check"></span>
+                        <span class="season-name">{{ $season->name }}</span>
                     </label>
                 @endforeach
             </div>

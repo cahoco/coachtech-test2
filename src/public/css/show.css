@@ -4,6 +4,11 @@
     margin-bottom: 30px;
 }
 
+.product-show-page {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
 .product-show-body {
     display: flex;
     gap: 40px;
@@ -128,6 +133,39 @@
     border: none;
     padding: 0;
     cursor: pointer;
+}
+
+.delete-icon-image {
+    width: 24px;
+    height: 24px;
+}
+
+.delete-form {
+    display: inline-block;
+}
+
+/* 削除ボタンの見た目 */
+.btn-delete {
+    width: 200px;
+    height: 50px;
+    color: #fff;
+    font-weight: 500;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.delete-button-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-left: 480px;
+    margin-top: -45px;
+}
+
+.btn-delete {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
 }
 
 .delete-icon-image {

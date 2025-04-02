@@ -88,7 +88,7 @@ class ProductController extends Controller
         // 中間テーブル（season）更新
         $product->seasons()->sync($request->seasons);
 
-        return redirect()->route('products.show', $product->id)->with('success', '商品情報を更新しました。');
+        return redirect()->route('products.index')->with('success', '商品情報を更新しました。');
     }
 
     public function destroy($productId)

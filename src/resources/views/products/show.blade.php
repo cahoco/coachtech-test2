@@ -5,16 +5,14 @@
 @endsection
 
 @section('content')
-<form action="{{ route('products.update', $product->id) }}" method="POST" enctype="multipart/form-data">
+<div class="frame-base">
+    <form action="{{ route('products.update', $product->id) }}" method="POST" enctype="multipart/form-data">
     @csrf
-
-    <div class="frame-base">
         <div class="breadcrumb">
             <a href="{{ route('products.index') }}" class="breadcrumb-link">商品一覧</a>
             <span class="breadcrumb-separator">＞</span>
             <span class="breadcrumb-current">{{ $product->name }}</span>
         </div>
-
         <div class="product-show-body">
             <!-- 左：画像 -->
             <div class="product-image-block">
@@ -45,13 +43,16 @@
 
                 <div class="form-group">
                     <label class="form-label">季節</label>
-                    @foreach($seasons as $season)
-                        <label>
-                            <input type="checkbox" name="seasons[]" value="{{ $season->id }}"
-                            {{ in_array($season->id, old('seasons', $product->seasons->pluck('id')->toArray())) ? 'checked' : '' }}>
-                            {{ $season->name }}
-                        </label>
-                    @endforeach
+                    <div class="season-options">
+                        @foreach($seasons as $season)
+                            <label class="season-label">
+                                <input type="checkbox" name="seasons[]" value="{{ $season->id }}"
+                                    {{ in_array($season->id, old('seasons', $product->seasons->pluck('id')->toArray())) ? 'checked' : '' }}>
+                                <span class="custom-check"></span>
+                                <span class="season-name">{{ $season->name }}</span>
+                            </label>
+                        @endforeach
+                    </div>
                     @error('seasons')<p class="error-message">{{ $message }}</p>@enderror
                 </div>
             </div>
@@ -68,15 +69,16 @@
         <div class="form-buttons">
             <a href="{{ route('products.index') }}" class="btn-cancel">戻る</a>
             <button type="submit" class="btn-register">変更を保存</button>
-
-            {{-- 削除ボタン（ゴミ箱） --}}
-            <form action="{{ route('products.destroy', $product->id) }}" method="POST" onsubmit="return confirm('本当に削除しますか？');" style="display:inline;">
-            @csrf
-                <button type="submit" class="delete-icon-button">
-                    <img src="{{ asset('storage/image.png') }}" alt="削除" class="delete-icon-image">
+        </div>
+    </form>
+        <div class="delete-button-wrapper">
+            <form action="{{ route('products.destroy', $product->id) }}" method="POST" onsubmit="return confirm('本当に削除しますか？');">
+                @csrf
+                <button type="submit" class="btn-delete">
+                    <img src="{{ asset('storage/icon/image.png') }}" alt="削除" class="delete-icon-image">
                 </button>
             </form>
         </div>
-    </div>
-</form>
+</div>
+
 @endsection
