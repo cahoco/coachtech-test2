@@ -13,9 +13,26 @@ cd coachtech-test2
 ```
 docker-compose up -d --build  
 ```
-### 3.Laravel環境構築
+### 3.Laravelの初期設定
 ```
-docker-compose exec php php artisan migrate:fresh --seed  
+docker-compose exec php
+```
+
+#### 以下はコンテナ内で実行
+```
+.envファイルの確認
+cp .env.example .env
+
+アプリキー生成
+php artisan key:generate
+
+キャッシュクリア
+php artisan config:clear
+php artisan cache:clear
+
+マイグレーション + シーディング
+php artisan migrate:fresh --seed
+exit
 ```
 
 ---
@@ -27,7 +44,7 @@ docker-compose exec php php artisan migrate:fresh --seed
 - nginx の `default.conf` の `root` が `/var/www/public` になっているか確認
 - Laravel の `public` ディレクトリが `/src/public` にあるか確認
 
-##### 「このサイトにアクセスできません（Connection Refused）」
+##### 「このサイトにアクセスできません」
 
 - `php artisan serve` は使わず、`nginx` 経由でアクセスする
 - `http://localhost:8000` ではなく `http://localhost` にアクセスする  
@@ -43,17 +60,6 @@ DB_PORT=3306
 DB_DATABASE=laravel_db
 DB_USERNAME=laravel_user
 DB_PASSWORD=laravel_pass
-```
-#### その他初期設定  
-```
-# アプリケーションキー作成（必要な場合）
-docker-compose exec php php artisan key:generate  
-
-# マイグレーション（必要に応じて）
-docker-compose exec php php artisan migrate  
-
-# データベースシーディング
-docker-compose exec php php artisan db:seed  
 ```
 
 ## 使用技術(実行環境)
