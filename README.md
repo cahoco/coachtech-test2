@@ -70,3 +70,6 @@ docker-compose exec php php artisan db:seed
 ## URL
 * 開発環境：http://localhost/
 * phpMyAdmin：http://localhost:8080/
+
+##### メッセージ
+ファイルを選択した時の画像の表示は、JavaScriptでやる方法しか調べられずどうしてもできませんでした。
