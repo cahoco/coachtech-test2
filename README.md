@@ -14,14 +14,19 @@ cd coachtech-test2
 docker-compose up -d --build  
 ```
 ### 3.Laravelの初期設定
-```
-docker-compose exec php
-```
 
 #### 以下はコンテナ内で実行
 ```
-.envファイルの確認
+.envファイルの作成
 cp .env.example .env
+
+.env に以下を記述
+DB_CONNECTION=mysql
+DB_HOST=mysql
+DB_PORT=3306
+DB_DATABASE=laravel_db
+DB_USERNAME=laravel_user
+DB_PASSWORD=laravel_pass
 
 アプリキー生成
 php artisan key:generate
@@ -32,8 +37,15 @@ php artisan cache:clear
 
 マイグレーション + シーディング
 php artisan migrate:fresh --seed
+
+画像表示用
+php artisan storage:link
+
 exit
 ```
+
+### 4.下記URLで確認
+http://localhost/products
 
 ---
 
@@ -50,17 +62,6 @@ exit
 - `http://localhost:8000` ではなく `http://localhost` にアクセスする  
 
 ---
-
-### Laravel設定  
-#### .env に以下を記述
-```
-DB_CONNECTION=mysql
-DB_HOST=mysql
-DB_PORT=3306
-DB_DATABASE=laravel_db
-DB_USERNAME=laravel_user
-DB_PASSWORD=laravel_pass
-```
 
 ## 使用技術(実行環境)
 * PHP 7.4.9
